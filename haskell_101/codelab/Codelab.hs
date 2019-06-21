@@ -198,7 +198,8 @@ pointDistance p1 p2 = codelab
 -- null tells you whether a list is empty or not
 
 null :: [a] -> Bool
-null fixme = codelab
+null [] = True 
+null _  = False
 
 
 -- head returns the first element of the list
@@ -206,14 +207,15 @@ null fixme = codelab
 
 head :: [a] -> a
 head []    = error "head: empty list"
-head fixme = codelab
+head (x:xs) = x
 
 
 -- tail returns everything but the first element
 -- if the list is empty it panics
 
 tail :: [a] -> [a]
-tail = codelab
+tail [] = error "tail: empty list"
+tail (x:xs) = xs
 
 
 
