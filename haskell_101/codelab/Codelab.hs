@@ -163,7 +163,7 @@ hours (Minutes m) = m `div` 60
 -- example, for 15 and 25, distance is 10.
 
 timeDistance :: Minutes -> Minutes -> Minutes
-timeDistance m1 m2 = codelab
+timeDistance (Minutes m1) (Minutes m2) = Minutes $ abs $ m2 - m1
 
 type Point = (Int, Int)
 
@@ -179,7 +179,7 @@ type Point = (Int, Int)
 --     f (x, y) = abs x + abs y
 
 pointDistance :: Point -> Point -> Double
-pointDistance p1 p2 = codelab
+pointDistance (x1, y1) (x2, y2) = sqrt $ fromIntegral $ (x2 - x1)^2 + (y2 -y1)^2::Double
 
 
 {- #####################################################################
