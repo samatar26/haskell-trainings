@@ -259,6 +259,8 @@ or (False:xs) = or xs
 -- you have to chain the second one at the end of the first one.
 
 (++) :: [a] -> [a] -> [a]
+-- Note - Solution didn't have the first case, but I guess it's more efficient to have it, because imagine if the second list is empty and your first list has a lot of elements,
+-- I guess it's a waste to call this function recursively. But then again the : operator is time constant?
 l      ++ []     = l 
 []     ++ l      = l
 (x:xs) ++ y      = x : xs ++ y
