@@ -151,7 +151,7 @@ data Minutes = Minutes Int
 --     let v = a `div` b
 
 hours :: Minutes -> Int
-hours m = codelab
+hours (Minutes m) = m `div` 60
 
 -- In case you might need some mathematical functions, you can use
 --
@@ -207,7 +207,7 @@ null _  = False
 
 head :: [a] -> a
 head []    = error "head: empty list"
-head (x:xs) = x
+head (x:_) = x
 
 
 -- tail returns everything but the first element
@@ -215,7 +215,7 @@ head (x:xs) = x
 
 tail :: [a] -> [a]
 tail [] = error "tail: empty list"
-tail (x:xs) = xs
+tail (_:xs) = xs
 
 
 
@@ -233,28 +233,35 @@ tail (x:xs) = xs
 -- Do you remember it from the slides?
 
 length :: [a] -> Int
-length l = codelab
+length []     = 0
+length (_:xs) = 1 + length xs
 
 
 -- "and" returns True if all the boolean values in the list are True.
 -- What do you think it returns for an empty list?
 
 and :: [Bool] -> Bool
-and l = codelab
+and []     = True 
+and (True:xs) = and xs 
+and (False:_) = False 
 
 
 -- "or" returns True if at least one value in the list is True.
 -- What do you think it returns for an empty list?
 
 or :: [Bool] -> Bool
-or l = codelab
+or []         = False
+or (True:_)   = True 
+or (False:xs) = or xs
 
 
 -- "(++)" is the concatenation operator.  To concatenate two linked lists
 -- you have to chain the second one at the end of the first one.
 
 (++) :: [a] -> [a] -> [a]
-l1 ++ l2 = codelab
+l      ++ []     = l 
+[]     ++ l      = l
+(x:xs) ++ y      = x : xs ++ y
 
 
 
