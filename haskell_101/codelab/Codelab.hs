@@ -68,6 +68,7 @@ import Data.Maybe           (isJust)
 import Text.Read            (readMaybe)
 import Prelude       hiding (null, head, tail, length, and, or, (++),
                              map, filter, foldr, foldl, gcd)
+import Test.QuickCheck
 
 codelab :: a
 codelab = error "SOMETHING IS NOT IMPLEMENTED!"
@@ -236,15 +237,17 @@ length :: [a] -> Int
 length []     = 0
 length (_:xs) = 1 + length xs
 
+lengthF = foldl (\sum _ -> sum + 1) 0
 
 -- "and" returns True if all the boolean values in the list are True.
 -- What do you think it returns for an empty list?
 
 and :: [Bool] -> Bool
-and []     = True 
+and []        = True 
 and (True:xs) = and xs 
 and (False:_) = False 
 
+andF = foldl (&&) True
 
 -- "or" returns True if at least one value in the list is True.
 -- What do you think it returns for an empty list?
@@ -254,6 +257,7 @@ or []         = False
 or (True:_)   = True 
 or (False:xs) = or xs
 
+orF = foldl (||) False
 
 -- "(++)" is the concatenation operator.  To concatenate two linked lists
 -- you have to chain the second one at the end of the first one.
@@ -266,6 +270,7 @@ l      ++ []     = l
 (x:xs) ++ y      = x : xs ++ y
 
 
+l1 +++ l2 = foldr (:) l2 l1
 
 
 
