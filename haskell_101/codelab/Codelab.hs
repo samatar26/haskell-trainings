@@ -525,10 +525,10 @@ combine (a1, a2) (b1, b2) = (a1 + b1, a2 + b2)
 --     zip          :: [a] -> [b] -> [(a, b)]
 
 pairScore :: (Hand, Hand) -> Score
-pairScore = codelab codelab
+pairScore = uncurry computeScore 
 
 score :: [Hand] -> [Hand] -> Score
-score h1 h2 = codelab codelab $ codelab codelab $ codelab h1 h2
+score h1 h2 = foldl1 combine $ map pairScore $ zip h1 h2
 
 -- Hint: It creates a list of plays by merging the two lists,
 --       then it scores each play,
